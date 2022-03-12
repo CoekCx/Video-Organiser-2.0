@@ -34,15 +34,15 @@ class Subjects(Enum):
 
     def __str__(self):
         if self.name == 'CLOUD':
-            return f'{Color.YELLOW.value}{paths_to_subjects[self]}{Color.END.value}'
+            return in_color(paths_to_subjects[self], Color.YELLOW)
         elif self.name == 'OSKO':
-            return f'{Color.GREEN.value}{paths_to_subjects[self]}{Color.END.value}'
+            return in_color(paths_to_subjects[self], Color.GREEN)
         elif self.name == 'REES':
-            return f'{Color.BLUE.value}{paths_to_subjects[self]}{Color.END.value}'
+            return in_color(paths_to_subjects[self], Color.BLUE)
         elif self.name == 'RVA':
-            return f'{Color.PURPLE.value}{paths_to_subjects[self]}{Color.END.value}'
+            return in_color(paths_to_subjects[self], Color.PURPLE)
         elif self.name == 'WEB':
-            return f'{Color.RED.value}{paths_to_subjects[self]}{Color.END.value}'
+            return in_color(paths_to_subjects[self], Color.RED)
 
 class Lecture():
     def __init__(self, day, start_hour, start_minute, subject, type):
@@ -103,15 +103,22 @@ class SelectedFile():
         self.__lecture = new_lecture
     
     def __str__(self):
-        return f'{Color.CYAN.value}{self.file_name}:\t{self.lecture}{Color.END.value}'
+        return in_color(f'{self.file_name}:\t{self.lecture}', Color.CYAN)
 
-def print_cursor():
-    print(f'{Color.CYAN.value}>>{Color.END.value}', end='')
+def print_error(message):
+        system('cls')
+        print_in_color(message, Color.RED)
+        input()
+        exit()
 
 def wrong_input():
     system('cls')
     print(f'{Color.RED.value}You\'ve entered an invalid value!{Color.END.value}')
     input()
+
+print_cursor = lambda : print(f'{Color.CYAN.value}>>{Color.END.value}', end='')
+print_in_color = lambda text, color, end='\n': print(f'{color.value}{text}{Color.END.value}', end=end)
+in_color = lambda text, color, bold='': f'{bold}{color.value}{text}{Color.END.value}'
 
 # Subjects full names
 paths_to_subjects = {
