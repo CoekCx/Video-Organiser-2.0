@@ -1,5 +1,5 @@
 from enum import Enum
-from constants import *
+from os import system
 
 
 class Days(Enum):
@@ -72,5 +72,52 @@ class Lecture():
 
         return result
 
-def printCursor():
+class SelectedFile():
+    def __init__(self, file_path, lecture):
+        self.__file_path = file_path
+        self.__file_name = file_path
+        self.__lecture = lecture
+    
+    @property
+    def file_path(self):
+        return self.__file_path
+    
+    @file_path.setter
+    def file_path(self, new_file_path):
+        self.__file_path = new_file_path
+    
+    @property
+    def file_name(self):
+        return self.__file_name
+    
+    @file_name.setter
+    def file_name(self, new_file_name):
+        self.__file_name = new_file_name
+    
+    @property
+    def lecture(self):
+        return self.__lecture
+    
+    @lecture.setter
+    def lecture(self, new_lecture):
+        self.__lecture = new_lecture
+    
+    def __str__(self):
+        return f'{Color.CYAN.value}{self.file_name}:\t{self.lecture}{Color.END.value}'
+
+def print_cursor():
     print(f'{Color.CYAN.value}>>{Color.END.value}', end='')
+
+def wrong_input():
+    system('cls')
+    print(f'{Color.RED.value}You\'ve entered an invalid value!{Color.END.value}')
+    input()
+
+# Subjects full names
+paths_to_subjects = {
+    Subjects.CLOUD: 'Cloud computing u elektroenergetskim sistemima',
+    Subjects.OSKO: 'Osnove softvera sa kritičnim odzivom u elektroenergetskim sistemima',
+    Subjects.REES: 'Razvoj elektroenergetskog softvera',
+    Subjects.RVA: 'Razvoj višeslojnih aplikacija u elektroenergetskim sistemima',
+    Subjects.WEB: 'Veb programiranje',
+}

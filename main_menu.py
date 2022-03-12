@@ -1,20 +1,20 @@
-from matplotlib.pyplot import sca
+from utils import print_cursor, paths_to_subjects
+from re import search
 from constants import *
 from pathlib import Path
-import os
+from os import system
 
-from utils import printCursor
 
 # Main menu
 def menu():
     while True:
-        os.system('cls')
+        system('cls')
         load()
 
 # Loads data
 def load():
     scan_files()
-    printCursor()
+    print_cursor()
     input()
 
 # Scans existing files
@@ -23,13 +23,27 @@ def scan_files():
         scan_subject_folders()
         scan_recordings()
     except:
-        pass
-    print(file_count)
+        system('cls')
+        print('An error occured while scaning files.')
+        input()
+        exit()
 
+# Scans existing recordings
 def scan_recordings():
-    # TODO: Implement recordings scaning
-    raise NotImplementedError()
+    # Empty file names
+    for file_name in range(0, len(file_names)):
+        file_names.pop()
+    
+    # Scan files
+    paths = sorted(Path(path_to_recordings).iterdir())
 
+    # Filter files with mask and add them to the list
+    mask = r'[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}-[0-9]{2}-[0-9]{2}\.mkv'
+    for path in paths:
+        path = path.__str__().split(path_to_recordings+'\\')[1]
+        if search(mask, path):
+            file_names.append(path)
+    
 # Scans subject folders for folder count
 def scan_subject_folders():
     for subject in paths_to_subjects.values():
