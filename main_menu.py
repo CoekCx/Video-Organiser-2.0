@@ -15,7 +15,7 @@ def menu():
 def load():
     scan_files()
     load_files()
-    print_file_table()
+    print_file_selection()
     print_cursor()
     input()
 
