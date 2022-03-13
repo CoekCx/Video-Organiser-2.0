@@ -1,8 +1,8 @@
-from utils import print_cursor
+from utils.utils import print_cursor
 from os import system
-from printer import *
-from scanner import *
-from loader import *
+from utils.printer import *
+from utils.scanner import *
+from utils.loader import *
 
 
 # Main menu
