@@ -18,6 +18,7 @@ file_count = [
     [0, 0]  # WEB
 ]  # P, V
 
-path_to_semester = 'D:\\Coek\\FTN\\6. Semestar'
 path_to_recordings = 'D:\\Coek\\Recording\\6. Semestar'
+path_to_semester = 'D:\\Coek\\FTN\\6. Semestar'
+lecture_files = []
 file_names = []

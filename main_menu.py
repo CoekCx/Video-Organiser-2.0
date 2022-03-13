@@ -1,6 +1,8 @@
 from utils import print_cursor
 from os import system
+from printer import *
 from scanner import *
+from loader import *
 
 
 # Main menu
@@ -12,6 +14,8 @@ def menu():
 # Loads data
 def load():
     scan_files()
+    load_files()
+    print_file_table()
     print_cursor()
     input()
 

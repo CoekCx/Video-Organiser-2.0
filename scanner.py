@@ -1,6 +1,5 @@
-from utils import paths_to_subjects
+from utils import empty_list, print_error, paths_to_subjects
 from pathlib import Path
-from utils import print_error
 from constants import *
 from re import search
 
@@ -11,7 +10,7 @@ def scan_files():
         __scan_subject_folders()
         __scan_recordings()
     except:
-        print_error('An error occured while scaning files.')
+        print_error('An error occured while scaning files.', True)
     
 # Scans subject folders for folder count
 def __scan_subject_folders():
@@ -37,8 +36,7 @@ def __count_folders(path, subject, lecture_type):
 # Scans existing recordings
 def __scan_recordings():
     # Empty file names
-    for file_name in range(0, len(file_names)):
-        file_names.pop()
+    empty_list(file_names)
     
     # Scan files
     paths = sorted(Path(path_to_recordings).iterdir())
