@@ -1,8 +1,8 @@
-from utils.utils import empty_list, process_exception, paths_to_subjects
+from re import search
 from pathlib import Path
 from constants.exceptions import ScaningException
 from constants.constants import *
-from re import search
+from utils.utilities import empty_list, process_exception, paths_to_subjects
 
 
 # Scans existing files

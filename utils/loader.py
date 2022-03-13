@@ -1,22 +1,30 @@
-from utils.utils import LectureFile, empty_list, process_exception
 from datetime import datetime
-from constants.constants import *
 from constants.exceptions import FileIdentificationException
+from constants.constants import *
+from utils.utilities import LectureFile, empty_list, process_exception
+from utils.printer import print_file_selection
+from utils.scanner import scan_files
 
 
-def load_files():
+# Loads data
+def load():
+    scan_files()
+    __load_files()
+    print_file_selection()
+
+def __load_files():
     # Empty lecture files
     empty_list(lecture_files)
 
     # Identify files
     for file in file_names:
         try:
-            determine_lecture_by_file(file)
+            __determine_lecture_by_file(file)
         except FileIdentificationException as e:
             process_exception(e)
 
 # Returns false if lecture couldn't be determined
-def determine_lecture_by_file(file):
+def __determine_lecture_by_file(file):
     # Parse data from file name
     data = file.split('-')
     year, month, day, hour = int(data[0]), int(data[1]), int(data[2].split(' ')[0]), int(data[2].split(' ')[1])

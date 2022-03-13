@@ -1,4 +1,4 @@
-from utils.utils import Subjects, Lecture, LectureType, Days
+from utils.utilities import Subjects, Lecture, LectureType, Days
 
 
 schedule = [
