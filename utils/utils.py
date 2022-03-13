@@ -122,18 +122,14 @@ class LectureFile():
     def __str__(self):
         return in_color(f'|   {self.date}\t|{self.lecture}', Color.CYAN)
 
-def print_error(message, exit=False):
-        system('cls')
-        print_in_color(message, Color.RED)
-        input()
-        if exit:
-            exit()
-
-def wrong_input():
+def process_exception(exception, exit=False):
     system('cls')
-    print(f'{Color.RED.value}You\'ve entered an invalid value!{Color.END.value}')
+    print(exception)
     print_cursor()
     input()
+    system('cls')
+    if exit:
+        exit()
 
 def empty_list(list):
     for item in range(0, len(list)):
@@ -141,7 +137,7 @@ def empty_list(list):
 
 print_cursor = lambda : print_in_color('>> ', Color.DARKCYAN, Color.BOLD.value, '')
 print_in_color = lambda text, color, bold='', end='\n': print(f'{bold}{color.value}{text}{Color.END.value}', end=end)
-in_color = lambda text, color, bold='', end='\n': f'{bold}{color.value}{text}{Color.END.value}'
+in_color = lambda text, color, bold='': f'{bold}{color.value}{text}{Color.END.value}'
 
 # Subjects full names
 paths_to_subjects = {

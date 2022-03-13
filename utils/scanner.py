@@ -1,5 +1,6 @@
-from utils.utils import empty_list, print_error, paths_to_subjects
+from utils.utils import empty_list, process_exception, paths_to_subjects
 from pathlib import Path
+from constants.exceptions import ScaningException
 from constants.constants import *
 from re import search
 
@@ -10,7 +11,7 @@ def scan_files():
         __scan_subject_folders()
         __scan_recordings()
     except:
-        print_error('An error occured while scaning files.', True)
+        process_exception(ScaningException(), True)
     
 # Scans subject folders for folder count
 def __scan_subject_folders():

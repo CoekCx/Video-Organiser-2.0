@@ -1,6 +1,7 @@
-from utils.utils import LectureFile, empty_list, print_error
+from utils.utils import LectureFile, empty_list, process_exception
 from datetime import datetime
 from constants.constants import *
+from constants.exceptions import FileIdentificationException
 
 
 def load_files():
@@ -9,8 +10,10 @@ def load_files():
 
     # Identify files
     for file in file_names:
-        if not determine_lecture_by_file(file):
-            print_error(f'File \'{file}\' couldn\'t be identified using the schedule.')
+        try:
+            determine_lecture_by_file(file)
+        except FileIdentificationException as e:
+            process_exception(e)
 
 # Returns false if lecture couldn't be determined
 def determine_lecture_by_file(file):
@@ -30,5 +33,7 @@ def determine_lecture_by_file(file):
             file_path = path_to_recordings + '\\' + file
             temp_lecture_file = LectureFile(file_path, f'{day}.{month}.{year}', lecture)
             lecture_files.append(temp_lecture_file)
-            return True
-    return False
+            return
+            
+    # Raise exception if file couldn't be identified using the schedule
+    raise FileIdentificationException(file)
