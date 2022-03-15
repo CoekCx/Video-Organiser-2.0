@@ -39,7 +39,7 @@ def __determine_lecture_by_file(file):
             current_lecture.subject = lecture.subject
             current_lecture.type = lecture.type
             file_path = path_to_recordings + '\\' + file
-            temp_lecture_file = LectureFile(file_path, f'{day}.{month}.{year}', lecture)
+            temp_lecture_file = LectureFile(file_path, f'{day}.{month}.{year}', file, lecture)
             lecture_files.append(temp_lecture_file)
             return
             

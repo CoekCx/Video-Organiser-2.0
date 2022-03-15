@@ -1,3 +1,4 @@
+from tabulate import tabulate
 from enum import Enum
 from os import system
 
@@ -42,6 +43,7 @@ class Subjects(Enum):
     REES = 2
     RVA = 3
     WEB = 4
+    NONE = None
 
     def __str__(self):
         if self.name == 'CLOUD':
@@ -56,24 +58,12 @@ class Subjects(Enum):
             return in_color(paths_to_subjects[self], Color.RED)
 
 class Lecture():
-    def __init__(self, day, start_hour, start_minute=None, subject=None, type=None):
+    def __init__(self, day='', start_hour='', start_minute=None, subject=Subjects.NONE, type=None):
         self.day = day
         self.start_hour = start_hour
         self.start_minute = start_minute
         self.subject = subject
         self.type = type
-    
-    def printable_subject(self):
-        if self.subject.name == 'CLOUD':
-            return f'{self.subject}\t\t\t\t' + in_color('|' + self.type.name + '|', Color.CYAN)
-        elif self.subject.name == 'OSKO':
-            return f'{self.subject}\t' + in_color('|' + self.type.name + '|', Color.CYAN)
-        elif self.subject.name == 'REES':
-            return f'{self.subject}\t\t\t\t\t' + in_color('|' + self.type.name + '|', Color.CYAN)
-        elif self.subject.name == 'RVA':
-            return f'{self.subject}\t\t' + in_color('|' + self.type.name + '|', Color.CYAN)
-        elif self.subject.name == 'WEB':
-            return f'{self.subject}\t\t\t\t\t\t\t' + in_color('|' + self.type.name + '|', Color.CYAN)
 
     def __eq__(self, object):
         if self.day == object.day.value and self.start_hour == object.start_hour:
@@ -81,21 +71,21 @@ class Lecture():
         return False
 
     def __str__(self):
-        result = ''
-        if self.day.name in ('WEDNESDAY', 'THURSDAY'):
-            result = f'{self.day.name}\t| {self.start_hour}:{self.start_minute}\t|{self.printable_subject()}'
-        else:
-            result = f'{self.day.name}\t\t| {self.start_hour}:{self.start_minute}\t|{self.printable_subject()}'
-
-        return result
+        return tabulate([[self.day.name, f'{self.start_hour}:{self.start_minute}', str(self.subject), self.type.name]])
 
 class LectureFile():
-    def __init__(self, file_path, date, lecture):
+    def __init__(self, file_path='', date='', file_name='', lecture=Lecture()):
         self.__file_path = file_path
         self.date = date
         self.__lecture = lecture
-        self.__generate_file_name()
+        self.__file_name = file_name
 
+    def copy(self, lecture_file):
+        self.__file_path = lecture_file.file_path
+        self.date = lecture_file.date
+        self.__lecture = lecture_file.lecture
+        self.__file_name = lecture_file.file_name
+    
     @property
     def file_path(self):
         return self.__file_path
@@ -107,6 +97,10 @@ class LectureFile():
     @property
     def file_name(self):
         return self.__file_name
+
+    @file_name.setter
+    def file_name(self, new_file_name):
+        self.__file_path = new_file_name
     
     @property
     def lecture(self):
@@ -115,12 +109,9 @@ class LectureFile():
     @lecture.setter
     def lecture(self, new_lecture):
         self.__lecture = new_lecture
-    
-    def __generate_file_name(self):
-        self.__file_name = self.lecture.printable_subject()
 
     def __str__(self):
-        return in_color(f'|   {self.date}\t|{self.lecture}', Color.CYAN)
+        return tabulate([[in_color(self.file_name, Color.CYAN), self.date, str(self.lecture.subject)]], ['File name', 'Date created', 'Subject'])
 
 def process_exception(exception, exit=False):
     system('cls')

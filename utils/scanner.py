@@ -8,13 +8,13 @@ from utils.utilities import empty_list, process_exception, paths_to_subjects
 # Scans existing files
 def scan_files():
     try:
-        __scan_subject_folders()
+        scan_subject_folders()
         __scan_recordings()
     except:
         process_exception(ScaningException(), True)
     
 # Scans subject folders for folder count
-def __scan_subject_folders():
+def scan_subject_folders():
     for subject in paths_to_subjects.values():
         subject_path = path_to_semester + '\\' + subject
         paths = sorted(Path(subject_path).iterdir())
@@ -26,13 +26,13 @@ def __scan_subject_folders():
                 __count_folders(path, subject, LectureType.VEZBE.value)
 
 # Counts folders and saves that data
-def __count_folders(path, subject, lecture_type):
+def __count_folders(path, subject_name, lecture_type):
     paths = sorted(Path(path).iterdir())
     folder_count = 0
     for p in paths:
         folder_count += 1
-    subject_index = [index.value for index, name in paths_to_subjects.items() if name == subject]
-    file_count[subject_index[0]][lecture_type] = folder_count
+    subject = [index for index, name in paths_to_subjects.items() if name == subject_name]
+    (file_count[subject[0]])[lecture_type] = folder_count
 
 # Scans existing recordings
 def __scan_recordings():

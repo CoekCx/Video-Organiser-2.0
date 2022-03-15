@@ -1,4 +1,4 @@
-from utils.utilities import Subjects, Lecture, LectureType, Days
+from utils.utilities import Subjects, Lecture, LectureType, LectureFile, Days
 
 
 schedule = [
@@ -10,15 +10,16 @@ schedule = [
 ]
 
 # Number of files in subject folders
-file_count = [
-    [0, 0], # CLOUD
-    [0, 0], # OSKO
-    [0, 0], # REES
-    [0, 0], # RVA
-    [0, 0]  # WEB
-]  # P, V
+file_count = {
+   Subjects.CLOUD:  [0, 0],
+   Subjects.OSKO:   [0, 0],
+   Subjects.REES:   [0, 0],
+   Subjects.RVA:    [0, 0],
+   Subjects.WEB:    [0, 0]
+  }                # P, V
 
 path_to_recordings = 'D:\\Coek\\Recording\\6. Semestar'
 path_to_semester = 'D:\\Coek\\FTN\\6. Semestar'
+selected_file = LectureFile()
 lecture_files = []
 file_names = []

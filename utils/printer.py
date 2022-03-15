@@ -1,6 +1,5 @@
-from tabulate import tabulate
 from constants.constants import *
-from utils.utilities import print_in_color, Color
+from utils.utilities import print_in_color, Color, system, tabulate, print_cursor
 
 
 # Prints file selection menu
@@ -30,5 +29,16 @@ def __print_file_input_instructions():
     print('- Automatically process all files')
     print_in_color(f'   1-{len(lecture_files)}\t', Color.WHITE, Color.BOLD.value, '')
     print('- Process file with that index')
-    print_in_color(f'    q/Q\t', Color.WHITE, Color.BOLD.value, '')
+    print_in_color('    q/Q\t', Color.WHITE, Color.BOLD.value, '')
     print('- Quit\n')
+
+# Prints confirmation menu for file processing
+def print_confirmation_menu():
+    system('cls')
+    print_in_color('    y/Y\t', Color.WHITE, Color.BOLD.value, '')
+    print('- Process selected file')
+    print_in_color('    n/N\t', Color.WHITE, Color.BOLD.value, '')
+    print('- Abort processing file\n')
+    print(selected_file)
+    print()
+    print_cursor()
