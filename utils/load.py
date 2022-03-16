@@ -1,21 +1,10 @@
 from datetime import datetime
 from exceptions.file_identification_exception import FileIdentificationException
-from utils.utilities import LectureFile, empty_list, process_exception
-from constants.constants import *
-from helpers.scanner import Scanner
-from helpers.printer import Printer
+from utils.utilities import Lecture, LectureFile, empty_list, process_exception
+from constants.constants import lecture_files, file_names, schedule, path_to_recordings
 
 
-# Loads data
-def load():
-    printer = Printer()
-    scanner = Scanner()
-
-    scanner.scan_files()
-    __load_files()
-    printer.print_file_selection()
-
-def __load_files():
+def load_files():
     # Empty lecture files
     empty_list(lecture_files)
 

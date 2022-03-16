@@ -1,11 +1,13 @@
+from helpers.loader import Loader
 from utils.utilities import system
-from utils.load import load
 from helpers.handler import request_input
 
 
 # Main menu
 def menu():
+    loader = Loader()
+
     while True:
         system('cls')
-        load()
+        loader.load_data()
         request_input()
