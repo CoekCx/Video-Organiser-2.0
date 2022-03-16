@@ -1,13 +1,15 @@
+from asyncio import Handle
 from helpers.loader import Loader
+from helpers.handler import Handler
 from utils.utilities import system
-from helpers.handler import request_input
 
 
 # Main menu
 def menu():
     loader = Loader()
+    handler = Handler()
 
     while True:
         system('cls')
         loader.load_data()
-        request_input()
+        handler.take_input()
