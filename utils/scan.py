@@ -5,14 +5,6 @@ from constants.constants import *
 from utils.utilities import empty_list, process_exception, paths_to_subjects
 
 
-# Scans existing files
-def scan_files():
-    try:
-        scan_subject_folders()
-        __scan_recordings()
-    except:
-        process_exception(ScaningException(), True)
-    
 # Scans subject folders for folder count
 def scan_subject_folders():
     for subject in paths_to_subjects.values():
@@ -35,7 +27,7 @@ def __count_folders(path, subject_name, lecture_type):
     (file_count[subject[0]])[lecture_type] = folder_count
 
 # Scans existing recordings
-def __scan_recordings():
+def scan_recordings():
     # Empty file names
     empty_list(file_names)
     

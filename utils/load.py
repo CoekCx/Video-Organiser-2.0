@@ -1,16 +1,17 @@
 from datetime import datetime
 from exceptions.file_identification_exception import FileIdentificationException
-from constants.constants import *
 from utils.utilities import LectureFile, empty_list, process_exception
-from utils.scan import scan_files
+from constants.constants import *
+from helpers.scanner import Scanner
 from helpers.printer import Printer
 
 
 # Loads data
 def load():
     printer = Printer()
+    scanner = Scanner()
 
-    scan_files()
+    scanner.scan_files()
     __load_files()
     printer.print_file_selection()
 

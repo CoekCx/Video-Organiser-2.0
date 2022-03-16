@@ -1,3 +1,7 @@
 __pycache__/
+exceptions/__pycache__/
+constants/__pycache__/
+helpers/__pycache__/
+utils/__pycache__/
 .git/
 .gitignore/
