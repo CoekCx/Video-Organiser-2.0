@@ -1,8 +1,8 @@
 from matplotlib.style import use
-from constants.exceptions import InvalidInput
+from exceptions.invalid_input_exception import InvalidInput
 from constants.constants import lecture_files
 from utils.utilities import process_exception, print_cursor
-from utils.file_handler import process_file, automatic_file_processing
+from utils.file_processing import process_file, automatic_file_processing
 
 
 # Take user input and process it

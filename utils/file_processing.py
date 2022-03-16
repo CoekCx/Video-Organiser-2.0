@@ -1,7 +1,7 @@
-from utils.scanner import scan_subject_folders
+from utils.scan import scan_subject_folders
 from constants.constants import *
 from utils.utilities import LectureFile
-from utils.printer import print_confirmation_menu
+from helpers.printer import Printer
 
 
 def automatic_file_processing():
@@ -19,6 +19,8 @@ def make_folder(file_index):
     #folder_path = path_to_semester.replace('\\', '/') + f'/{lecture_file.lecture.subject.}'
 
 def __confirm_processing():
-    print_confirmation_menu()
+    printer = Printer()
+
+    printer.print_confirmation_menu()
     # TODO: Implement file processing confirmation 
     raise NotImplementedError

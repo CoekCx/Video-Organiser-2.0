@@ -1,6 +1,6 @@
 from re import search
 from pathlib import Path
-from constants.exceptions import ScaningException
+from exceptions.scaning_exception import ScaningException
 from constants.constants import *
 from utils.utilities import empty_list, process_exception, paths_to_subjects
 

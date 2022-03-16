@@ -1,6 +1,6 @@
 from utils.utilities import system
-from utils.loader import load
-from handler import request_input
+from utils.load import load
+from helpers.handler import request_input
 
 
 # Main menu
