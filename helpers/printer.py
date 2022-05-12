@@ -1,17 +1,19 @@
+from constants.constants import selected_file
 from utils.print import load_table, print_file_input_instructions
 from utils.utilities import Color, print_in_color, print_cursor, system
-from constants.constants import selected_file
 
 
-class Printer():
+class Printer:
 
     # Prints file selection menu
-    def print_file_selection(self):
+    @staticmethod
+    def print_file_selection():
         print_file_input_instructions()
         load_table()
 
     # Prints confirmation menu for file processing
-    def print_confirmation_menu(self):
+    @staticmethod
+    def print_confirmation_menu():
         system('cls')
         print_in_color('    y/Y\t', Color.WHITE, Color.BOLD.value, '')
         print('- Process selected file')

@@ -1,7 +1,8 @@
 from datetime import datetime
+
+from constants.constants import lecture_files, file_names, schedule, path_to_recordings
 from exceptions.file_identification_exception import FileIdentificationException
 from utils.utilities import Lecture, LectureFile, empty_list, process_exception
-from constants.constants import lecture_files, file_names, schedule, path_to_recordings
 
 
 def load_files():
@@ -14,6 +15,7 @@ def load_files():
             __determine_lecture_by_file(file)
         except FileIdentificationException as e:
             process_exception(e)
+
 
 # Returns false if lecture couldn't be determined
 def __determine_lecture_by_file(file):
@@ -34,6 +36,6 @@ def __determine_lecture_by_file(file):
             temp_lecture_file = LectureFile(file_path, f'{day}.{month}.{year}', file, lecture)
             lecture_files.append(temp_lecture_file)
             return
-            
+
     # Raise exception if file couldn't be identified using the schedule
     raise FileIdentificationException(file)

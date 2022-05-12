@@ -1,13 +1,14 @@
-from exceptions.scaning_exception import ScaningException
+from exceptions.scaning_exception import ScanningException
 from utils.scan import scan_recordings, scan_subject_folders
 from utils.utilities import process_exception
 
 
-class Scanner():
+class Scanner:
     # Scans existing files
-    def scan_files(self):
+    @staticmethod
+    def scan_files():
         try:
             scan_subject_folders()
             scan_recordings()
         except:
-            process_exception(ScaningException(), True)
+            process_exception(ScanningException(), True)

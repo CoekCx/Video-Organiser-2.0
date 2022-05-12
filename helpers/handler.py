@@ -1,7 +1,7 @@
-from exceptions.invalid_input_exception import InvalidInput
 from constants.constants import lecture_files
-from utils.utilities import process_exception, print_cursor
+from exceptions.invalid_input_exception import InvalidInput
 from utils.file_processing import process_file, automatic_file_processing
+from utils.utilities import process_exception, print_cursor
 
 
 class Handler():
@@ -22,10 +22,11 @@ class Handler():
         elif user_input == 0:
             automatic_file_processing()
         else:
-            process_file(user_input-1)  # Subtracted by 1 to adjust the file index
+            process_file(user_input - 1)  # Subtracted by 1 to adjust the file index
 
     # Returns false if input is invalid
-    def __validate_input(self, user_input):
+    @staticmethod
+    def __validate_input(user_input):
         try:
             if user_input == '':
                 user_input = None
